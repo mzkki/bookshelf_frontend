@@ -2,9 +2,10 @@
 
 <p>This repository is belong to make submission for dicoding. Nothing important here !</p>
 
-## **Todo List**
+[]: # Language: markdown
+[]: # Path: README.md
 
----
+## **Todo List**
 
 - [ ] Create U/I for Bookshelf App
 - [ ] HTML and CSS
