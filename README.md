@@ -24,7 +24,6 @@ This repository is belong to make submission for dicoding. Nothing important her
 - [ ] Javascript
 - [ ] Web Storage (Local Storage, Session Storage)
 
-**Note:** This is additional feature
-
-    - [ ] Searching the book by title
-    - [ ] Add Toast/Snackbar message for success and error
+- **Note:** This is additional feature
+  - [ ] Searching the book by title
+  - [ ] Add Toast/Snackbar message for success and error
