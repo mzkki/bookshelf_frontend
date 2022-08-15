@@ -26,5 +26,5 @@ This repository is belong to make submission for dicoding. Nothing important her
 
 **Note:** This is additional feature
 
-- [ ] Searching the book by title
-- [ ] Add Toast/Snackbar message for success and error
+    - [ ] Searching the book by title
+    - [ ] Add Toast/Snackbar message for success and error
