@@ -19,8 +19,8 @@ This repository is belong to make submission for dicoding. Nothing important her
 
 ## **Todo List**
 
-- [ ] Create U/I for Bookshelf App
-- [ ] HTML and CSS
+- [x] Create U/I for Bookshelf App
+- [x] HTML and CSS
 - [ ] Javascript
 - [ ] Web Storage (Local Storage, Session Storage)
 

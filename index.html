@@ -22,49 +22,77 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-sm-6">
-          <div class="card">
-            <div class="card-header">Add some book</div>
+          <form id="inputBook">
+            <div class="card shadow bg-light border-0 p-3">
+              <div class="card-body">
+                <h5 class="card-title mb-4">Add Book</h5>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control border-0"
+                    id="floatingInput"
+                    placeholder="Book Title"
+                    autocomplete="off"
+                  />
+                  <label for="floatingInput">Judul</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control border-0"
+                    id="floatingInput"
+                    placeholder="Author"
+                    autocomplete="off"
+                  />
+                  <label for="floatingInput">Penulis</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control border-0"
+                    id="floatingInput"
+                    placeholder="Year"
+                    autocomplete="off"
+                    min="1900"
+                    max="2100"
+                    step="1"
+                    value="2022"
+                  />
+                  <label for="floatingInput">Tahun</label>
+                </div>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-outline-success btn-lg">Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow bg-light border-0">
             <div class="card-body">
-              <h5 class="card-title">Add Book</h5>
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="Book Title"
-                  autocomplete="off"
-                />
-                <label for="floatingInput">Judul</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="Author"
-                  autocomplete="off"
-                />
-                <label for="floatingInput">Penulis</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="Year"
-                  autocomplete="off"
-                  min="1900"
-                  max="2100"
-                  step="1"
-                  value="2022"
-                />
-                <label for="floatingInput">Tahun</label>
+              <div class="h5 mb-3">Buku yang belum dibaca</div>
+              <div class="p-3 shadow-sm rounded bg-body" id="books">
+                <div class="inner">
+                  <h5>Your Journey in my life</h5>
+                  <p class="text-muted fs-6 fw-light">Fernanda &#x2022 2019</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-3">Buku yang belum dibaca</div>
-        <div class="col-sm-3">Buku yang sudah dibaca</div>
+        <div class="col-sm-3">
+          <div class="card shadow bg-light border-0">
+            <div class="card-body">
+              <div class="h5 mb-3">Buku yang sudah dibaca</div>
+              <div class="p-3 shadow-sm rounded bg-body" id="completed-books">
+                <div class="inner">
+                  <h5>My Journey</h5>
+                  <p class="text-muted fs-6 fw-light">Raditya Dika &#x2022 2022</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="js/dom.js"></script>
