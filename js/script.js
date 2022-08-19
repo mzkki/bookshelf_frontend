@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       feedback.innerHTML = '<i class="fa-solid fa-circle-info"></i> Silahkan isi field penulis !'
       feedbackPenulis.append(feedback)
     } else if (year == '') {
-      feedback.innerHTML = '<i class="fa-solid fa-circle-info"></i> Silahkan isi field penulis !'
+      feedback.innerHTML = '<i class="fa-solid fa-circle-info"></i> Silahkan isi field tahun !'
       feedbackTahun.append(feedback)
     }
     else {
