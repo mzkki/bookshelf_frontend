@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2')
 
       trashButton.addEventListener('click', () => {
-        removeBookFromComplete(bookObj.id)
+        confirm('yakin ingin menghapus buku ?') ? removeBookFromComplete(bookObj.id) : false
       })
 
       buttonContainer.append(undoButton, trashButton)
@@ -115,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
       trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2')
 
       trashButton.addEventListener('click', () => {
-        removeBookFromComplete(bookObj.id)
+        confirm('yakin ingin menghapus buku ?') ?
+          removeBookFromComplete(bookObj.id) : false
       })
 
       buttonContainer.append(checkButton, trashButton)
