@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     textTitle.innerText = bookObj.title
 
     const authorAndYear = document.createElement('p')
-    authorAndYear.classList.add('text-muted', 'fs-5')
+    authorAndYear.classList.add('text-muted', 'fs-6')
     authorAndYear.innerText = bookObj.author
     authorAndYear.innerText += ' • '
     authorAndYear.innerText += bookObj.year
@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     textContainer.append(textTitle, authorAndYear)
 
     const container = document.createElement('div')
+    container.classList.add('p-3', 'shadow-sm', 'rounded', 'bg-body', 'mb-2')
     container.append(textContainer)
     container.setAttribute('id', `book-${bookObj.id}`)
     console.log(container)
