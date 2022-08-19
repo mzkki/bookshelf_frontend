@@ -227,7 +227,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener(SAVED_EVENT, () => {
-    console.log(localStorage.getItem(STORAGE_KEY))
+    const x = document.getElementById('snackbar')
+    x.innerText = 'Berhasil Mengubah Data'
+    x.className = 'show'
+    setTimeout(() => {
+      x.className = x.className.replace('show', '')
+    }, 3000)
   })
 
   const loadDataFromStorage = () => {
