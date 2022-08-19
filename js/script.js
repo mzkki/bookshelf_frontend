@@ -114,14 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (bookObj.isComplete) {
       const undoButton = document.createElement('i')
-      undoButton.classList.add('fa-solid', 'fa-rotate-left', 'm-2')
+      undoButton.classList.add('fa-solid', 'fa-rotate-left', 'm-2', 'text-warning')
 
       undoButton.addEventListener('click', () => {
         undoBookFromComplete(bookObj.id)
       })
 
       const trashButton = document.createElement('i')
-      trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2')
+      trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2', 'text-danger')
 
       trashButton.addEventListener('click', () => {
         confirm('yakin ingin menghapus buku ?') ? removeBookFromComplete(bookObj.id) : false
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } else {
       const checkButton = document.createElement('i')
-      checkButton.classList.add('fa-solid', 'fa-check', 'm-2')
+      checkButton.classList.add('fa-solid', 'fa-check', 'm-2', 'text-success')
 
       checkButton.addEventListener('click', () => {
         addBookToComplete(bookObj.id)
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       const trashButton = document.createElement('i')
-      trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2')
+      trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2', 'text-danger')
 
       trashButton.addEventListener('click', () => {
         confirm('yakin ingin menghapus buku ?') ?
