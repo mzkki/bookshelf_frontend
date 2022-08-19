@@ -67,14 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
     authorAndYear.innerText += bookObj.year
 
     const textContainer = document.createElement('div')
-    textContainer.classList.add('inner')
+    textContainer.classList.add('col-sm-9')
     textContainer.append(textTitle, authorAndYear)
+
+    const rowContainer = document.createElement('div')
+    rowContainer.classList.add('row')
+
 
     const container = document.createElement('div')
     container.classList.add('p-3', 'shadow-sm', 'rounded', 'bg-body', 'mb-2')
-    container.append(textContainer)
-    container.setAttribute('id', `book-${bookObj.id}`)
-    console.log(container)
+
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('col-sm-3')
+
     if (bookObj.isComplete) {
       const undoButton = document.createElement('i')
       undoButton.classList.add('fa-solid', 'fa-rotate-left')
@@ -90,16 +95,78 @@ document.addEventListener('DOMContentLoaded', () => {
         removeBookFromComplete(bookObj.id)
       })
 
-      container.append(undoButton, trashButton)
+      buttonContainer.append(undoButton, trashButton)
+      // container.append(undoButton, trashButton)
+
     } else {
       const checkButton = document.createElement('i')
-      checkButton.classList.add('fa-solid', 'fa-check')
+      checkButton.classList.add('fa-solid', 'fa-check', 'm-2')
 
       checkButton.addEventListener('click', () => {
         addBookToComplete(bookObj.id)
+
       })
-      container.append(checkButton)
+
+      const trashButton = document.createElement('i')
+      trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2')
+
+      trashButton.addEventListener('click', () => {
+        removeBookFromComplete(bookObj.id)
+      })
+
+      buttonContainer.append(checkButton, trashButton)
+      // container.append(checkButton)
     }
+
+    const addBookToComplete = (bookId) => {
+      const bookTarget = findBook(bookId)
+
+      if (bookTarget == null) return
+
+      bookTarget.isComplete = true
+      document.dispatchEvent(new Event(RENDER_EVENT))
+    }
+
+    const findBook = (bookId) => {
+      for (const book of books) {
+        if (book.id === bookId) {
+          return book
+        }
+      }
+      return null
+    }
+
+    const removeBookFromComplete = (bookId) => {
+      const bookTarget = findBookIndex(bookId)
+
+      if (bookTarget === -1) return
+
+      books.splice(bookTarget, 1)
+      document.dispatchEvent(new Event(RENDER_EVENT))
+    }
+
+    const undoBookFromComplete = (bookId) => {
+      const bookTarget = findBook(bookId)
+
+      if (bookTarget == null) return
+
+      bookTarget.isComplete = false
+      document.dispatchEvent(new Event(RENDER_EVENT))
+    }
+
+    const findBookIndex = (bookId) => {
+      for (const index in books) {
+        if (books[index].id === bookId) {
+          return index
+        }
+      }
+      return -1
+    }
+
+    rowContainer.append(textContainer, buttonContainer)
+    container.append(rowContainer)
+    container.setAttribute('id', `book-${bookObj.id}`)
+
     return container
   }
 })
