@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const compeleteBook = document.getElementById('completed-books')
     compeleteBook.innerHTML = ''
+
     for (const bookItem of books) {
       const bookElement = makeBookItem(bookItem)
       if (!bookItem.isComplete) {
@@ -46,14 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const nothing = document.createElement('h4')
+    const nothing = document.createElement('p')
+    nothing.classList.add('p-3', 'shadow-sm', 'rounded', 'bg-body', 'mb-2')
+
     if (uncompleteBook.innerHTML == '') {
-      nothing.innerText = "Bagus semua buku telah kamu baca"
+      nothing.innerText = "Tambahkan sebuah buku yang ingin kamu baca"
       uncompleteBook.append(nothing)
-    } else {
+    } else if (compeleteBook.innerHTML == '' || uncompleteBook.innerHTML !== '') {
       nothing.innerText = "come on"
       compeleteBook.append(nothing)
     }
+
   })
 
   const makeBookItem = (bookObj) => {
@@ -82,14 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (bookObj.isComplete) {
       const undoButton = document.createElement('i')
-      undoButton.classList.add('fa-solid', 'fa-rotate-left')
+      undoButton.classList.add('fa-solid', 'fa-rotate-left', 'm-2')
 
       undoButton.addEventListener('click', () => {
         undoBookFromComplete(bookObj.id)
       })
 
       const trashButton = document.createElement('i')
-      trashButton.classList.add('fa-solid', 'fa-circle-minus')
+      trashButton.classList.add('fa-solid', 'fa-circle-minus', 'm-2')
 
       trashButton.addEventListener('click', () => {
         removeBookFromComplete(bookObj.id)
@@ -169,4 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return container
   }
+
+  document.dispatchEvent(new Event(RENDER_EVENT))
 })
