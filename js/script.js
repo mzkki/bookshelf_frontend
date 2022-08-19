@@ -16,9 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookID = generateId()
     const bookObj = generateBookObj(bookID, title, author, year, false)
     books.push(bookObj)
-    console.log(bookObj)
+    // console.log(bookObj)
 
     document.dispatchEvent(new Event(RENDER_EVENT))
+    saveData()
   }
 
   const generateId = () => {
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nothing.innerText = "Tambahkan sebuah buku yang ingin kamu baca"
       uncompleteBook.append(nothing)
     } else if (compeleteBook.innerHTML == '' || uncompleteBook.innerHTML !== '') {
-      nothing.innerText = "come on"
+      nothing.innerText = "Ayo, selesaikan baca buku kamu !"
       compeleteBook.append(nothing)
     }
 
@@ -130,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       bookTarget.isComplete = true
       document.dispatchEvent(new Event(RENDER_EVENT))
+      saveData()
     }
 
     const findBook = (bookId) => {
@@ -148,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       books.splice(bookTarget, 1)
       document.dispatchEvent(new Event(RENDER_EVENT))
+      saveData()
     }
 
     const undoBookFromComplete = (bookId) => {
@@ -157,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       bookTarget.isComplete = false
       document.dispatchEvent(new Event(RENDER_EVENT))
+      saveData()
     }
 
     const findBookIndex = (bookId) => {
@@ -175,5 +179,45 @@ document.addEventListener('DOMContentLoaded', () => {
     return container
   }
 
-  document.dispatchEvent(new Event(RENDER_EVENT))
+  const SAVED_EVENT = 'saved-book'
+  const STORAGE_KEY = 'BOOK_APPS'
+
+  const saveData = () => {
+    if (isStorageExist()) {
+      const parsed = JSON.stringify(books)
+      localStorage.setItem(STORAGE_KEY, parsed)
+      document.dispatchEvent(new Event(SAVED_EVENT))
+    }
+  }
+
+  const isStorageExist = () => {
+    if (typeof (Storage) === undefined) {
+      alert('Browser kamu tidak mendukung local storage')
+      return false
+    } else {
+      return true
+    }
+  }
+
+  document.addEventListener(SAVED_EVENT, () => {
+    console.log(localStorage.getItem(STORAGE_KEY))
+  })
+
+  const loadDataFromStorage = () => {
+    const serializedData = localStorage.getItem(STORAGE_KEY)
+    let data = JSON.parse(serializedData)
+
+    if (data !== null) {
+      for (const book of data) {
+        books.push(book)
+      }
+    }
+
+    document.dispatchEvent(new Event(RENDER_EVENT))
+  }
+
+  if (isStorageExist()) {
+    loadDataFromStorage()
+  }
+
 })
