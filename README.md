@@ -21,9 +21,10 @@ This repository is belong to make submission for dicoding. Nothing important her
 
 - [x] Create U/I for Bookshelf App
 - [x] HTML and CSS
-- [ ] Javascript
-- [ ] Web Storage (Local Storage, Session Storage)
+- [x] Javascript
+- [x] Web Storage (Local Storage, Session Storage)
 
 - **Note:** This is additional feature
   - [ ] Searching the book by title
   - [ ] Add Toast/Snackbar message for success and error
+  - [ ] Add dark mode feature
