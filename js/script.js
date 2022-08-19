@@ -13,13 +13,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const author = document.getElementById('author').value
     const year = document.getElementById('year').value
 
-    const bookID = generateId()
-    const bookObj = generateBookObj(bookID, title, author, year, false)
-    books.push(bookObj)
-    // console.log(bookObj)
 
-    document.dispatchEvent(new Event(RENDER_EVENT))
-    saveData()
+    const feedbackJudul = document.getElementById('feedbackJudul')
+    feedbackJudul.innerHTML = ''
+    const feedbackPenulis = document.getElementById('feedbackPenulis')
+    feedbackPenulis.innerHTML = ''
+    const feedbackTahun = document.getElementById('feedbackTahun')
+    feedbackTahun.innerHTML = ''
+
+    const feedback = document.createElement('p')
+    feedback.classList.add('text-danger', 'm-2')
+    feedback.style.fontSize = '14px'
+
+    if (title == '') {
+      feedback.innerHTML = '<i class="fa-solid fa-circle-info"></i> Silahkan isi field judul !'
+      feedbackJudul.append(feedback)
+    } else if (author == '') {
+      feedback.innerHTML = '<i class="fa-solid fa-circle-info"></i> Silahkan isi field penulis !'
+      feedbackPenulis.append(feedback)
+    } else if (year == '') {
+      feedback.innerHTML = '<i class="fa-solid fa-circle-info"></i> Silahkan isi field penulis !'
+      feedbackTahun.append(feedback)
+    }
+    else {
+
+      const bookID = generateId()
+      const bookObj = generateBookObj(bookID, title, author, year, false)
+      books.push(bookObj)
+
+      document.dispatchEvent(new Event(RENDER_EVENT))
+      saveData()
+
+      this.title.value = ''
+      this.author.value = ''
+      this.year.value = ''
+    }
   }
 
   const generateId = () => {
@@ -38,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const compeleteBook = document.getElementById('completed-books')
     compeleteBook.innerHTML = ''
-
     for (const bookItem of books) {
       const bookElement = makeBookItem(bookItem)
       if (!bookItem.isComplete) {
@@ -54,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (uncompleteBook.innerHTML == '') {
       nothing.innerText = "Tambahkan sebuah buku yang ingin kamu baca"
       uncompleteBook.append(nothing)
-    } else if (compeleteBook.innerHTML == '' || uncompleteBook.innerHTML !== '') {
+    } else {
       nothing.innerText = "Ayo, selesaikan baca buku kamu !"
       compeleteBook.append(nothing)
     }
