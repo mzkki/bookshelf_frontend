@@ -29,17 +29,11 @@ document.addEventListener(RENDER_EVENT, () => {
 
 })
 
-
-const formSubmit = document.getElementById('inputBook')
-formSubmit.addEventListener('submit', (event) => {
-  event.preventDefault()
-  addBook()
-})
-
 const addBook = () => {
   const title = document.getElementById('title').value
   const author = document.getElementById('author').value
   const year = document.getElementById('year').value
+  const isComplete = document.getElementById('isComplete').checked
 
 
   const feedbackJudul = document.getElementById('feedbackJudul')
@@ -66,7 +60,7 @@ const addBook = () => {
   else {
 
     const bookID = generateId()
-    const bookObj = generateBookObj(bookID, title, author, year, false)
+    const bookObj = generateBookObj(bookID, title, author, year, isComplete)
     books.push(bookObj)
 
     document.dispatchEvent(new Event(RENDER_EVENT))
@@ -75,6 +69,7 @@ const addBook = () => {
     this.title.value = ''
     this.author.value = ''
     this.year.value = ''
+    this.isComplete.checked = false
   }
 }
 
@@ -89,7 +84,7 @@ const makeBookItem = (bookObj) => {
   authorAndYear.innerText += bookObj.year
 
   const textContainer = document.createElement('div')
-  textContainer.classList.add('col-sm-9')
+  textContainer.classList.add('col-9')
   textContainer.append(textTitle, authorAndYear)
 
   const rowContainer = document.createElement('div')
@@ -97,10 +92,10 @@ const makeBookItem = (bookObj) => {
 
 
   const container = document.createElement('div')
-  container.classList.add('p-3', 'shadow-sm', 'rounded', 'bg-body', 'mb-2')
+  container.classList.add('p-3', 'shadow-sm', 'rounded', 'bg-body', 'mb-2', 'book-item')
 
   const buttonContainer = document.createElement('div')
-  buttonContainer.classList.add('col-sm-3')
+  buttonContainer.classList.add('col-3', 'align-self-center', 'text-end')
 
   if (bookObj.isComplete) {
     const undoButton = document.createElement('i')
@@ -192,4 +187,19 @@ const makeBookItem = (bookObj) => {
   container.setAttribute('id', `book-${bookObj.id}`)
 
   return container
+}
+
+const searchBook = () => {
+  const searchBook = document.getElementById('searchTitle').value
+  const bookUpperCase = searchBook.toUpperCase()
+  const bookItem = document.querySelectorAll('.book-list > .book-item')
+
+  for (let i = 0; i < bookItem.length; i++) {
+    bookValue = bookItem[i].textContent || bookItem[i].innerText
+    if (bookValue.toUpperCase().indexOf(bookUpperCase) > -1) {
+      bookItem[i].style.display = ''
+    } else {
+      bookItem[i].style.display = 'none'
+    }
+  }
 }
