@@ -10,13 +10,25 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="css/snackbar.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="mb-5">
-    <nav class="navbar bg-light p-3">
+  <body class="mb-5" id="body">
+    <nav class="navbar bg-light p-3" id="navbar">
       <div class="container">
         <h1 class="navbar-brand" style="font-size: 20pt">
           Bookshelf Front End
         </h1>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="darkMode"
+          />
+          <label class="form-check-label" id="darkToggle" for="darkMode"
+            >Dark Mode</label
+          >
+        </div>
       </div>
     </nav>
     <div id="snackbar"></div>
@@ -24,9 +36,9 @@
       <div class="row">
         <div class="col-sm-6 my-3">
           <form id="inputBook" action="#">
-            <div class="card shadow bg-light border-0 p-3">
+            <div class="card shadow bg-light border-0 p-3" id="cardBody">
               <div class="card-body">
-                <h5 class="card-title mb-4">Tambah list buku</h5>
+                <h5 class="card-title mb-4" id="cardTitle">Tambah list buku</h5>
                 <div class="form-floating mb-3">
                   <input
                     type="text"
@@ -70,12 +82,21 @@
                     value=""
                     id="isComplete"
                   />
-                  <label class="form-check-label" for="isComplete">
+                  <label
+                    class="form-check-label"
+                    id="isCompleted"
+                    for="isComplete"
+                  >
                     Tandai sudah dibaca
                   </label>
                 </div>
                 <div class="d-grid gap-2">
-                  <button class="btn btn-outline-success btn-lg">Kirim</button>
+                  <button
+                    id="buttonInput"
+                    class="btn btn-outline-success btn-lg"
+                  >
+                    Kirim
+                  </button>
                 </div>
               </div>
             </div>
@@ -83,9 +104,9 @@
         </div>
         <div class="col-sm-6 my-3">
           <form action="#" id="searchBook">
-            <div class="card shadow bg-light border-0 p-3">
+            <div class="card shadow bg-light border-0 p-3" id="cardBody">
               <div class="card-body">
-                <h5 class="card-title mb-4">Cari Buku</h5>
+                <h5 class="card-title mb-4" id="cardTitle">Cari Buku</h5>
                 <div class="form-floating mb-3">
                   <input
                     type="text"
@@ -97,7 +118,12 @@
                   <label for="searchTitle">Cari</label>
                 </div>
                 <div class="d-grid gap-2">
-                  <button class="btn btn-outline-primary btn lg">Cari</button>
+                  <button
+                    class="btn btn-outline-primary btn lg"
+                    id="buttonSearch"
+                  >
+                    Cari
+                  </button>
                 </div>
               </div>
             </div>
@@ -108,7 +134,7 @@
         <div class="col-sm-6 my-3">
           <div class="card shadow bg-light border-0">
             <div class="card-body">
-              <div class="h5 mb-3">Buku yang belum dibaca</div>
+              <div class="card-title h5 mb-3">Buku yang belum dibaca</div>
               <div id="books" class="book-list"></div>
             </div>
           </div>
@@ -116,7 +142,7 @@
         <div class="col-sm-6 my-3">
           <div class="card shadow bg-light border-0">
             <div class="card-body">
-              <div class="h5 mb-3">Buku yang sudah dibaca</div>
+              <div class="card-title h5 mb-3">Buku yang sudah dibaca</div>
               <div id="completed-books" class="book-list"></div>
             </div>
           </div>
@@ -126,6 +152,7 @@
     <script src="js/script.js"></script>
     <script src="js/dom.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/darkMode.js"></script>
     <script
       src="https://kit.fontawesome.com/412caee2e0.js"
       crossorigin="anonymous"
