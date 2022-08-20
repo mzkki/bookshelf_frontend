@@ -13,6 +13,10 @@ const darkModeToggle = () => {
   const buttonInput = document.getElementById('buttonInput')
   const buttonSearch = document.getElementById('buttonSearch')
 
+  const footer = document.getElementById('footer')
+  const footerText = document.getElementById('footer-text')
+  const footerLink = document.getElementById('footer-link')
+
   if (darkMode.checked) {
     body.classList.add('dark-body')
 
@@ -32,6 +36,10 @@ const darkModeToggle = () => {
 
     buttonInput.classList.replace('btn-outline-success', 'btn-success')
     buttonSearch.classList.replace('btn-outline-primary', 'btn-primary')
+
+    footer.classList.replace('bg-light', 'bg-dark')
+    footerText.classList.add('text-white')
+    footerLink.classList.replace('text-dark', 'text-white')
   }
   if (!darkMode.checked) {
     body.classList.remove('dark-body')
@@ -52,5 +60,9 @@ const darkModeToggle = () => {
 
     buttonInput.classList.replace('btn-success', 'btn-outline-success')
     buttonSearch.classList.replace('btn-primary', 'btn-outline-primary')
+
+    footer.classList.replace('bg-dark', 'bg-light')
+    footerText.classList.remove('text-white')
+    footerLink.classList.replace('text-white', 'text-dark')
   }
 }
